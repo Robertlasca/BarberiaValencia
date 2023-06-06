@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Actualizar servicio</title>
+
+    <!-- Normalize V8.0.1 -->
+    <link th:href="@{/css/normalize.css}" rel="stylesheet" href="/static/css/normalize.css" />
+
+    <!-- Bootstrap V4.3 -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="/static/css/bootstrap.min.css" />
+
+    <!-- Bootstrap Material Design V4.0 -->
+    <link th:href="@{/css/bootstrap-material-design.min.css}" rel="stylesheet"
+        href="/static/css/bootstrap-material-design.min.css" />
+
+    <!-- Font Awesome V5.9.0 -->
+    <link th:href="@{/css/all.css}" rel="stylesheet" href="/static/css/all.css" />
+
+    <!-- Sweet Alerts V8.13.0 CSS file -->
+    <link th:href="@{/css/sweetalert2.min.css}" rel="stylesheet" href="/static/css/sweetalert2.min.css" />
+
+    <!-- Sweet Alert V8.13.0 JS file-->
+    <script th:src="@{/js/sweetalert2.min.js}" src="/static/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css}" />
+
+
+
+
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <link th:href="@{/css/jquery.mCustomScrollbar.concat.min.js}" rel="stylesheet" />
+    <link th:href="@{/css/jquery.mCustomScrollbar.css}" rel="stylesheet" />
+
+    <!-- General Styles -->
+    <link th:href="@{/css/stylese.css}" rel="stylesheet" href="/static/css/stylese.css" />
+    <script th:src="@{//cdn.jsdelivr.net/npm/sweetalert2@11}" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+    <!-- Main container -->
+    <main class="full-box main-container">
+        <!-- Nav lateral -->
+        <div th:replace="@{nav_lateral}"></div>
+
+        <!-- Page content -->
+        <section class="full-box page-content" style="background-color:tan">
+            <nav class="full-box navbar-info">
+                <a href="#" class="float-left show-nav-lateral">
+                    <i class="fas fa-exchange-alt"></i>
+                </a>
+                <a th:href="@{/admi/login}" class="salir" id="salir">
+                    <i class="fas fa-power-off"></i>
+                </a>
+            </nav>
+
+            <!-- Page header -->
+            <div class="full-box page-header">
+                <h3 class="text-left">
+                    <i class="fas fa-sync-alt fa-fw"></i> &nbsp; Actualizar servicio
+                </h3>
+                <p class="text-justify">
+                    ¡Bienvenido al área de gestión de servicios! Aquí es donde puede agregar y administrar servicios de manera eficiente y fácil. 
+                    Con nuestra plataforma, puede dejar de preocuparse por tareas administrativas tediosas y enfocarse en hacer crecer su negocio. 
+                </p>
+            </div>
+
+            <div class="container-fluid" >
+                <ul class="full-box list-unstyled page-nav-tabs" style="background-color: antiquewhite;">
+                    <li>
+                        <a  th:href="@{/admi/servicio/nuevo}"><i class="fas fa-plus fa-fw"></i> &nbsp;
+                            Agregar servicio</a>
+                    </li>
+                    <li>
+                        <a class="active" th:href="@{/admi/servicio/lista}"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar servicio</a>
+                    </li>
+                    <li>
+                        <a  th:href="@{/admi/servicio/lista}"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Actualizar servicio</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="container-fluid">
+                <form th:action="@{/admi/servicio/actualizar}" th:object="${servicio}" class="form-neon"
+                    autocomplete="off" style="background-color: antiquewhite;" id="form" method="POST">
+                    <fieldset>
+                        <legend><i class="far fa-address-card"></i> &nbsp; Información del servicio</legend>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="usuario_dni" class="bmd-label-floating"><i class="fab fa-servicestack"></i>Nombre</label>
+                                        <input type="text" class="form-control" th:field="${servicio.nombre}" 
+                                            id="nombre" maxlength="70" readonly>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group" style="display: flex; align-items: center;">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;" >$</span>
+                                        <label for="servicio_precio" class="bmd-label-floating" style="margin-left: 40px;">Precio</label>
+                                        <input type="number" 
+                                            th:field="${servicio.precio}" th:value="${servicio.precio}" class="form-control"
+                                            name="servicio.precio" id="precio" maxlength="10" min="100" max="10000" step="0.01">
+                                    </div>
+
+                                    
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group" style="display: flex; align-items: center">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;" >%</span>
+                                        <label for="servicio_precio" class="bmd-label-floating" style="margin-left: 40px;">Descuento</label>
+                                        <input type="number" 
+                                            th:field="${servicio.descuento}"th:value="${servicio.descuento}" class="form-control"
+                                            name="producto.descuento" id="descuento" maxlength="10" min="0" max="100" value="0">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12">
+                                    <div class="form-group">
+
+                                        <label for="servicio_descripcion" class="bmd-label-floating"><i class="fas fa-pencil-alt"></i>Descripción del servicio</label>
+                                        <textarea name="descripcion"  class="form-control" id="descripcion" th:field="${servicio.descripcion}" th:value="${servicio.descripcion}" cols="30" rows="5" onblur="validarLetras(this)"></textarea>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br><br><br>
+                    <fieldset>
+                        <p class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre
+                            de usuario y contraseña</p>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="usuario_email" class="bmd-label-floating"><i class="fas fa-voicemail"></i>Email</label>
+                                        <input type="text" class="form-control" name="correoAdmi" id="email" maxlength="70" onblur="validarCorreo(this)">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="clave_admin" class="bmd-label-floating"><i class="fas fa-user-secret"></i>Contraseña</label>
+                                        <input type="password" class="form-control" name="contrasenaAdmi" id="contrasenaM"
+                                            maxlength="20">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <p class="text-center" style="margin-top: 40px;">
+                        <a th:href="@{/admi/servicio/lista}" class="btn btn-raised btn-success btn-sm" style="background-color: tan; color: black;"
+                        onmouseover="this.style.backgroundColor='antiquewhite';" onmouseout="this.style.backgroundColor='tan';"><i class="fas fa-clipboard-list fa-fw"></i>
+                        </i> &nbsp; Cancelar</a>
+                        <button type="submit" class="btn btn-raised btn-success btn-sm" style="background-color: tan; color: black;"
+                        onmouseover="this.style.backgroundColor='antiquewhite';" onmouseout="this.style.backgroundColor='tan';"><i class="fas fa-sync-alt"></i>
+                            &nbsp; Actualizar</button>
+                    </p>
+                </form>
+
+                <div th:if="${alerta}">
+                    <script th:inline="javascript">
+                        var alertIcon = /*[[${alertIcon}]]*/ '';
+                        var alertTitle = /*[[${alertTitle}]]*/ '';
+                        var alertMessage = /*[[${alertMessage}]]*/ '';
+
+                        /*<![CDATA[*/
+                        /* ... código JavaScript aquí ... */
+                        if (typeof alert !== "undefined") {
+                            Swal.fire({
+                                title: '' + alertTitle,
+                                text: '' + alertMessage,
+                                icon: '' + alertIcon,
+                            }).then((result) => {
+                                window.location = '';
+                            });
+                        }
+                        /*]]>*/
+                    </script>
+                
+                </div>
+            </div>
+
+
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <!--=============================================
+	=            Include JavaScript files           =
+	==============================================-->
+    <!-- jQuery V3.4.1 -->
+    <script th:src="@{/js/jquery-3.4.1.min.js}" src="/static/js/jquery-3.4.1.min.js"></script>
+
+    <!-- popper -->
+    <script th:src="@{/js/popper.min.js}" src="/static/js/popper.min.js"></script>
+
+    <!-- Bootstrap V4.3 -->
+    <script th:src="@{/js/bootstrap.min.js}" src="/static/js/bootstrap.min.js"></script>
+
+    <script th:src="@{/js/validaciones_actualizar_proveedor.js}"
+        src="/static/js/validaciones_actualizar_proveedor.js"></script>
+
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"
+        src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Bootstrap Material Design V4.0 -->
+    <script th:src="@{/js/bootstrap-material-design.min.js}" src="/static/js/bootstrap-material-design.min.js"></script>
+    <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+
+    <script th:src="@{/js/main.js}" src="/static/js/main.js"></script>
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

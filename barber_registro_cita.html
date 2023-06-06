@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Registrar cita</title>
+
+    <!-- Normalize V8.0.1 -->
+    <link th:href="@{/css/normalize.css}" rel="stylesheet" href="/static/css/normalize.css" />
+
+    <!-- Bootstrap V4.3 -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/jquery-ui-dist/jquery-ui.min.css}">
+    <!-- Bootstrap Material Design V4.0 -->
+    <link th:href="@{/css/bootstrap-material-design.min.css}" rel="stylesheet"
+        href="/static/css/bootstrap-material-design.min.css" />
+
+    <!-- Font Awesome V5.9.0 -->
+    <link th:href="@{/css/all.css}" rel="stylesheet" href="/static/css/all.css" />
+
+    <link th:href="@{/css/listadiseno.css}" rel="stylesheet" />
+
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css}" />
+    <script th:src="@{https://kit.fontawesome.com/yourcode.js}" src="https://kit.fontawesome.com/yourcode.js"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Sweet Alerts V8.13.0 CSS file -->
+    <link th:href="@{/css/sweetalert2.min.css}" rel="stylesheet" href="/static/css/sweetalert2.min.css" />
+
+    <!-- Sweet Alert V8.13.0 JS file-->
+    <script th:src="@{/js/sweetalert2.min.js}" src="/static/js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css}" />
+
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css}" />
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <link th:href="@{/css/jquery.mCustomScrollbar.concat.min.js}" rel="stylesheet" />
+    <link th:href="@{/css/jquery.mCustomScrollbar.css}" rel="stylesheet" />
+
+    <!-- General Styles -->
+    <link th:href="@{/css/stylese.css}" rel="stylesheet" href="/static/css/stylese.css" />
+    <script th:src="@{//cdn.jsdelivr.net/npm/sweetalert2@11}" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+    <!-- Main container -->
+    <main class="full-box main-container">
+
+        <div th:replace="@{nav_lateral_barber}"></div>
+
+
+        <!-- Page content -->
+        <section class="full-box page-content" style="background-color:tan">
+            <nav class="full-box navbar-info">
+                <a href="#" class="float-left show-nav-lateral">
+                    <i class="fas fa-exchange-alt"></i>
+                </a>
+                <a th:href="@{/admi/login}" class="salir" id="salir">
+                    <i class="fas fa-power-off"></i>
+                </a>
+            </nav>
+
+            <!-- Page header -->
+            <div class="full-box page-header">
+                <h3 class="text-left">
+                    <i class="fas fa-plus fa-fw"></i> &nbsp; Registrar cita
+                </h3>
+                <p class="text-justify">
+                    ¡Bienvenido al área de gestión de citas! Aquí es donde puede agregar y administrar tus citas.
+                </p>
+            </div>
+
+            <div class="container-fluid">
+                <ul class="full-box list-unstyled page-nav-tabs" style="background-color: antiquewhite;">
+                    <li>
+                        <a class="active" th:href="@{/barber/cita/nuevo}"><i class="fas fa-plus fa-fw"></i> &nbsp;
+                            Registrar cita</a>
+                    </li>
+
+                    <li>
+                        <a  th:href="@{/barber/cita/lista}"><i class="fas fa-search fa-fw"></i> &nbsp; Todas mis citas</a>
+                    </li>
+
+                    <li>
+                        <a  th:href="@{/barber/miscita/lista}"><i class="fas fa-search fa-fw"></i> &nbsp; Citas de hoy</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/barber/cita/lista}"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Actualizar
+                            cita</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content here-->
+            <div class="container-fluid">
+
+                <form th:action="@{/barber/cita/guardar}" method="POST" class="form-neon" autocomplete="off"
+                    style="background-color: antiquewhite;" id="form" onsubmit="return validarFormulario()">
+                    <fieldset>
+                        <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
+                        <div class="container-fluid">
+                            <div class="row">
+
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="fecha" class="bmd-label-floating" ><i class="fas fa-calendar fa-fw"></i>Selecciona una fecha</label>
+                                        <input type="text" id="fecha"  name="fecha" class="datepicker"
+                                            readonly="readonly" style="background-color: antiquewhite; padding: 6px;">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        
+                                        <label for="hora" class="bmd-label-floating"><i class="fas fa-clock fa-fw"></i> Selecciona una hora</label>
+                                        <select class="form-control" name="hora" id="hora">
+                                            <option value="" selected="" disabled="" style="background-color: tan;"></option>
+                                            <option value="10:00 AM" style="background-color: tan;">10:00 AM</option >
+                                            <option value="12:00 PM" style="background-color: tan;">12:00 PM</option>
+                                            <option value="14:00 PM" style="background-color: tan;">14:00 PM</option>
+                                            <option value="16:00 PM" style="background-color: tan;">16:00 PM</option>
+                                            <option value="18:00 PM" style="background-color: tan;">18:00 PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                               <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="servi" class="bmd-label-floating"><i class="fab fa-servicestack"></i>Selecciona el servicio</label>
+                                        <select class="form-control" name="servi" id="servicio">
+                                            <option value="" selected="" disabled="" style="background-color: tan;">
+                                                </option>
+                                            <th:block th:each="servicio: ${listaServicios}">
+                                                <option th:text="${servicio.nombre}" th:value="${servicio.id_servicio}"
+                                                    style="background-color: tan;"></option>
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group" style="display: flex; align-items: center">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;" >$</span>
+                                        <label for="precio" class="bmd-label-floating" style="margin-left: 40px;">Precio</label>
+                                        <input type="number" class="form-control" name="precio" id="precio" step="0.01" pattern="\d+(\.\d{1,2})?" readonly>
+                                        
+                                    </div>
+
+                                    
+                                </div>
+
+                                
+                                <div class="col-12 col-md-4">
+                                    
+                                    <div class="form-group">
+                                        
+                                        <label for="servicio_precio" class="bmd-label-floating"><i class="fas fa-user-alt"></i>Cliente</label>
+                                        <input type="number" class="form-control" name="cliente" id="cliente" value="0"  readonly>
+                                        <br>
+                                        <center>
+                                        <a  class="btn btn-raised btn-success btn-sm" style="background-color: tan; color: black;" id="mostrarDiv"
+                        onmouseover="this.style.backgroundColor='antiquewhite';" onmouseout="this.style.backgroundColor='tan';"><i class="fas fa-clipboard-list fa-fw"></i>
+                        </i> &nbsp; Buscar cliente</a></center>
+                                    </div>
+                                
+                                </div>
+                            
+
+                                
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br>
+                    <p class="text-center" style="margin-top: 40px;">
+                        <center>
+                            <button type="reset" class="btn btn-raised btn-secondary btn-sm"
+                                style="background-color: tan; color: black;"
+                                onmouseover="this.style.backgroundColor='antiquewhite';"
+                                onmouseout="this.style.backgroundColor='tan';"><i class="fas fa-paint-roller"></i>
+                                &nbsp; Limpiar</button>
+                            &nbsp; &nbsp;
+                            <button  name="submitBtn" value="agendar" type="submit" class="btn btn-raised btn-info btn-sm"
+                                style="background-color: tan; color: black;"
+                                onmouseover="this.style.backgroundColor='antiquewhite';"
+                                onmouseout="this.style.backgroundColor='tan';"><i class="far fa-save"></i>
+                                &nbsp; Agendar</button>
+
+                            <button type="submit"  name="submitBtn" value="agendarPagar" class="btn btn-raised btn-info btn-sm"
+                                style="background-color: tan; color: black;"
+                                onmouseover="this.style.backgroundColor='antiquewhite';"
+                                onmouseout="this.style.backgroundColor='tan';"><i class="far fa-save"></i>
+                            &nbsp; Agendar y pagar</button>
+                        </center>
+                    </p>
+                </form>
+
+
+
+
+                <div th:if="${alerta}">
+                    <script th:inline="javascript">
+                        var alertIcon = /*[[${alertIcon}]]*/ '';
+                        var alertTitle = /*[[${alertTitle}]]*/ '';
+                        var alertMessage = /*[[${alertMessage}]]*/ '';
+
+                        /*<![CDATA[*/
+                        /* ... código JavaScript aquí ... */
+                        if (typeof alert !== "undefined") {
+                            Swal.fire({
+                                title: '' + alertTitle,
+                                text: '' + alertMessage,
+                                icon: '' + alertIcon,
+                            }).then((result) => {
+                                window.location = '';
+                            });
+                        }
+                        /*]]>*/
+                    </script>
+
+                </div>
+
+
+                <div id="divOculto" style="display: none;">
+
+
+                    <!-- Content here-->
+                    <div class="container-fluid">
+                        <form class="form-neon" action="" style="background-color: tan">
+                            <div class="container-fluid">
+                                <div class="row justify-content-md-center">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="inputSearch" class="bmd-label-floating">¿Qué cliente estas
+                                                buscando?</label>
+                                            <input type="text" class="form-control" name="busqueda-" id="buscar"
+                                                maxlength="30">
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+    
+    
+                    <div class="container-fluid">
+                        <form action="">
+                            <input type="hidden" name="eliminar-busqueda" value="eliminar">
+                            <div class="container-fluid">
+                                <div class="row justify-content-md-center">
+                                    <div class="col-12 col-md-6">
+                                        <p class="text-center" style="font-size: 20px;">
+                                            Resultados de la búsqueda <strong>“Buscar”</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+    
+    
+    
+                    <div class="container-fluid">
+                        <div class="table-responsive">
+                            <table class="table " id="datatable">
+                                <thead>
+                                    <tr class="text-center roboto-medium">
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Teléfono</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody id="data">
+    
+                                    <tr th:each="cliente : ${clientes}" class="text-center">
+                                        <td th:text="${cliente.id_cliente}"></td>
+                                        <td th:text="${cliente.nombre}"></td>
+                                        <td th:text="${cliente.usuario.email}"></td>
+                                        <td th:text="${cliente.usuario.numeroTelefono}"></td>
+    
+    
+                                    </tr>
+    
+    
+    
+                                </tbody>
+    
+                            </table>
+                        </div>
+    
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <!--=============================================
+	=            Include JavaScript files           =
+	==============================================-->
+
+
+    <!-- jQuery V3.4.1 -->
+    <script th:src="@{/js/jquery-3.4.1.min.js}" src="/static/js/jquery-3.4.1.min.js"></script>
+
+    <!-- popper -->
+    <script th:src="@{/js/popper.min.js}" src="/static/js/popper.min.js"></script>
+
+    <!-- Bootstrap V4.3 -->
+    <script th:src="@{/js/bootstrap.min.js}" src="/static/js/bootstrap.min.js"></script>
+
+    <script th:src="@{/js/validaciones_registro_cita.js}"
+        src="/static/js/validaciones_registro_cita.js"></script>
+
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"
+        src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script> 
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js}"></script>
+
+    <style>
+        /* Estilos para el calendario */
+        
+
+        .flatpickr-calendar {
+            background-color: antiquewhite; /* Color de fondo */
+            color: tan; /* Color del texto */
+            border: none; /* Borde */
+            
+        }
+        
+    
+        .flatpickr-day.selected {
+            background-color: tan; /* Color de fondo de la fecha seleccionada */
+            color: antiquewhite; /* Color del texto de la fecha seleccionada */
+        }
+    
+        /* Estilos para los botones del calendario */
+        .flatpickr-prev-month, .flatpickr-next-month {
+            color: tan; /* Color de los botones de navegación */
+        }
+    </style>
+
+    <!-- Bootstrap Material Design V4.0 -->
+    <script th:src="@{/js/bootstrap-material-design.min.js}" src="/static/js/bootstrap-material-design.min.js"></script>
+    <script>$(document).ready(function () {
+            $('body').bootstrapMaterialDesign();
+
+
+        });</script>
+
+    <script>
+        const today = new Date(); // Obtener la fecha actual
+
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1); // Sumar 1 día
+
+const tomorrowString = tomorrow.toISOString().split('T')[0];  // Obtener la fecha actual en formato YYYY-MM-DD
+
+        flatpickr('.datepicker', {
+            dateFormat: 'Y-m-d',
+            disableMobile: true,
+            minDate: tomorrowString, // Establecer la fecha mínima como la fecha actual
+
+            onReady: function(selectedDates, dateStr, instance) {
+            // Obtener el selector de meses
+            var monthSelect = instance.calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+            
+            // Establecer los estilos deseados
+            monthSelect.style.backgroundColor = 'antiquewhite'; // Color de fondo del selector de meses
+            monthSelect.style.color = 'black'; // Color del texto del selector de meses
+        }
+        });
+
+        
+
+        
+    </script>
+
+
+
+    <script th:src="@{/js/main.js}" src="/static/js/main.js"></script>
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+
+	<script>
+		// Write on keyup event of keyword input element
+		$(document).ready(function () {
+			$("#buscar").keyup(function () {
+				_this = this;
+				var registrosEncontrados = false; // Variable para controlar si se encontraron registros
+	
+				// Show only matching TR, hide rest of them
+				$.each($("#datatable tbody tr"), function () {
+					if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1) {
+						$(this).hide();
+					} else {
+						$(this).show();
+						registrosEncontrados = true; // Se encontró al menos un registro
+					}
+				});
+	
+				if (!registrosEncontrados) {
+					toastr.error('No se encontraron registros.', '', { timeOut: 2000 });
+					console.log("hola");
+				}
+			});
+		});
+	</script>
+
+
+</body>
+
+</html>

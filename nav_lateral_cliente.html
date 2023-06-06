@@ -1,0 +1,44 @@
+ <!-- Nav lateral -->
+ <section class="full-box nav-lateral">
+    <div class="full-box nav-lateral-bg show-nav-lateral"></div>
+    <div class="full-box nav-lateral-content">
+        <figure class="full-box nav-lateral-avatar">
+            <i class="far fa-times-circle show-nav-lateral"></i>
+            <img th:src="@{/img/client.png}" class="img-fluid" alt="Avatar">
+            <figcaption class="roboto-medium text-center">
+                Bienvenido <br><small class="roboto-condensed-light"></small>
+            </figcaption>
+        </figure>
+        
+        <div class="full-box nav-lateral-bar"></div>
+        <nav class="full-box nav-lateral-menu">
+            <ul>
+                
+                    <li>
+                        <a th:href="@{/cliente/principal}"><i class="fab fa-dashcube fa-pulse"></i> &nbsp; Inicio</a>
+                    </li>
+                    
+                
+
+                
+
+                    <li>
+                        <a th:href="@{/cliente/datos}"><i class="fas fa-user-alt fa-pulse"></i> &nbsp; Mis datos</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/cliente/cita}"><i class="fas fa-clipboard-list fa-pulse"></i> &nbsp; Agendar cita</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/cliente/cita/lista}"><i class="fas fa-search fa-pulse"></i> &nbsp; Mis citas</a>
+                    </li>
+                
+
+                
+
+                
+            </ul>
+        </nav>
+    </div>
+</section>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Registrar venta</title>
+
+    <!-- Normalize V8.0.1 -->
+    <link th:href="@{/css/normalize.css}" rel="stylesheet" href="/static/css/normalize.css" />
+
+    <!-- Bootstrap V4.3 -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="/static/css/bootstrap.min.css" />
+
+    <!-- Bootstrap Material Design V4.0 -->
+    <link th:href="@{/css/bootstrap-material-design.min.css}" rel="stylesheet"
+        href="/static/css/bootstrap-material-design.min.css" />
+    <link th:href="@{/css/listadiseno.css}" rel="stylesheet" />
+    <!-- Font Awesome V5.9.0 -->
+    <link th:href="@{/css/all.css}" rel="stylesheet" href="/static/css/all.css" />
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css}" />
+    <script th:src="@{https://kit.fontawesome.com/yourcode.js}" src="https://kit.fontawesome.com/yourcode.js"
+        crossorigin="anonymous"></script>
+
+
+
+    <!-- Sweet Alerts V8.13.0 CSS file -->
+    <link th:href="@{/css/sweetalert2.min.css}" rel="stylesheet" href="/static/css/sweetalert2.min.css" />
+
+    <!-- Sweet Alert V8.13.0 JS file-->
+    <script th:src="@{/js/sweetalert2.min.js}" src="/static/js/sweetalert2.min.js"></script>
+
+
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css}" />
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <link th:href="@{/css/jquery.mCustomScrollbar.concat.min.js}" rel="stylesheet" />
+    <link th:href="@{/css/jquery.mCustomScrollbar.css}" rel="stylesheet" />
+
+    <!-- General Styles -->
+    <link th:href="@{/css/stylese.css}" rel="stylesheet" href="/static/css/stylese.css" />
+    <script th:src="@{//cdn.jsdelivr.net/npm/sweetalert2@11}" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+    <!-- Main container -->
+    <main class="full-box main-container">
+
+        <div th:replace="@{nav_lateral}"></div>
+
+
+        <!-- Page content -->
+        <section class="full-box page-content" style="background-color:tan">
+            <nav class="full-box navbar-info">
+                <a href="#" class="float-left show-nav-lateral">
+                    <i class="fas fa-exchange-alt"></i>
+                </a>
+                <a th:href="@{/admi/login}" class="salir" id="salir">
+                    <i class="fas fa-power-off"></i>
+                </a>
+            </nav>
+
+            <!-- Page header -->
+            <div class="full-box page-header">
+                <h3 class="text-left">
+                    <i class="fas fa-plus fa-fw"></i> &nbsp; Registrar venta de productos
+                </h3>
+                <p class="text-justify">
+                    ¡Bienvenido al área de gestión de venta de productos! Aquí es donde puede agregar y administrar las
+                    ventas de productos de manera eficiente y fácil.
+                    Con nuestra plataforma, puede dejar de preocuparse por tareas administrativas tediosas y enfocarse
+                    en hacer crecer su negocio.
+                </p>
+            </div>
+
+            <div class="container-fluid">
+                <ul class="full-box list-unstyled page-nav-tabs" style="background-color: antiquewhite;">
+                    <li>
+                        <a class="active" th:href="@{/admi/ventaProducto/nuevo}"><i class="fas fa-plus fa-fw"></i>
+                            &nbsp;
+                            Registrar venta</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/admi/ventaProducto/lista}"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar
+                            venta</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- Content here-->
+            <div class="container-fluid">
+                <form th:action="@{/admi/ventaProducto/guardar}" method="POST" class="form-neon" autocomplete="off"
+                    style="background-color: antiquewhite;" id="form">
+                    <fieldset>
+                        <legend><i class="fas fa-user"></i> &nbsp; Información de la venta</legend>
+                        <div class="container-fluid">
+                            <div class="row">
+
+
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="servi" class="bmd-label-floating"><i
+                                                class="fab fa-product-hunt"></i>Selecciona un producto</label>
+                                        <select class="form-control" name="producto" id="producto">
+                                            <option value="" selected="" disabled="" style="background-color: tan;">
+                                            </option>
+                                            <th:block th:each="producto: ${listaProductos}">
+                                                <option th:text="${producto.nombre}" th:value="${producto.id_producto}"
+                                                    style="background-color: tan;"></option>
+                                            </th:block>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+
+                                        <label for="servicio_precio" class="bmd-label-floating"><i
+                                                class="fas fa-money-bill"></i>Cantidad</label>
+                                        <input type="number" class="form-control" name="cantidad" id="cantidad" min="1"
+                                            max="50000000">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group" style="display: flex; align-items: center">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;">$</span>
+                                        <label for="servicio_precio" class="bmd-label-floating"
+                                            style="margin-left: 40px;"> Precio x unidad</label>
+                                        <input type="number" class="form-control" name="precio" id="precio" step="0.01"
+                                            min="1" max="1000000" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group" style="display: flex; align-items: center;">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;">$</span>
+                                        <label for="precioM" class="bmd-label-floating"
+                                            style="margin-left: 40px;">Precio total</label>
+                                        <input type="number" class="form-control" name="precioTotal" id="precioTotal"
+                                            step="0.01" readonly>
+
+
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+
+                                        <label for="servicio_precio" class="bmd-label-floating"><i
+                                                class="fas fa-user-alt"></i>Cliente</label>
+                                        <input type="number" class="form-control" name="cliente" id="cliente" value="0"
+                                            readonly>
+                                        <br>
+                                        <center>
+                                            <a class="btn btn-raised btn-success btn-sm"
+                                                style="background-color: tan; color: black;" id="mostrarDiv"
+                                                onmouseover="this.style.backgroundColor='antiquewhite';"
+                                                onmouseout="this.style.backgroundColor='tan';"><i
+                                                    class="fas fa-clipboard-list fa-fw"></i>
+                                                </i> &nbsp; Buscar cliente</a>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group" style="display: flex; align-items: center;">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;">%</span>
+                                        <label for="precioM" class="bmd-label-floating"
+                                            style="margin-left: 40px;">Descuento</label>
+                                        <input type="number" class="form-control" name="descuento" id="descuento"
+                                            readonly>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group" style="display: flex; align-items: center;">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;">$</span>
+                                        <label for="precioM" class="bmd-label-floating"
+                                            style="margin-left: 40px;">Total</label>
+                                        <input type="number" class="form-control" name="total" id="total" step="0.01"
+                                            readonly>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group" style="display: flex; align-items: center;">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;">$</span>
+                                        <label for="precioM" class="bmd-label-floating"
+                                            style="margin-left: 40px;">Cantidad recibida</label>
+                                        <input type="number" class="form-control" name="recibida" id="recibida"
+                                            step="0.01" onblur="validarNumero(this)">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group" style="display: flex; align-items: center;">
+                                        <span class="input-group-text" style="border: 1px solid #ced4da;
+                                        border-radius: 0.25rem 0 0 0.25rem;
+                                        padding: 0.375rem 0.75rem;">$</span>
+                                        <label for="precioM" class="bmd-label-floating"
+                                            style="margin-left: 40px;">Cambio</label>
+                                        <input type="number" class="form-control" name="cambio" id="cambio" step="0.01"
+                                            readonly>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br>
+                    <p class="text-center" style="margin-top: 40px;">
+                        <center>
+                            <button type="reset" class="btn btn-raised btn-secondary btn-sm"
+                                style="background-color: tan; color: black;"
+                                onmouseover="this.style.backgroundColor='antiquewhite';"
+                                onmouseout="this.style.backgroundColor='tan';"><i class="fas fa-paint-roller"></i>
+                                &nbsp; Limpiar</button>
+                            &nbsp; &nbsp;
+                            <button type="submit" id="boton" class="btn btn-raised btn-info btn-sm"
+                                style="background-color: tan; color: black;"
+                                onmouseover="this.style.backgroundColor='antiquewhite';"
+                                onmouseout="this.style.backgroundColor='tan';"><i class="far fa-save"></i>
+                                &nbsp; Registrar</button>
+                        </center>
+                    </p>
+                </form>
+
+
+
+                <div th:if="${alerta}">
+                    <script th:inline="javascript">
+                        var alertIcon = /*[[${alertIcon}]]*/ '';
+                        var alertTitle = /*[[${alertTitle}]]*/ '';
+                        var alertMessage = /*[[${alertMessage}]]*/ '';
+
+                        /*<![CDATA[*/
+                        /* ... código JavaScript aquí ... */
+                        if (typeof alert !== "undefined") {
+                            Swal.fire({
+                                title: '' + alertTitle,
+                                text: '' + alertMessage,
+                                icon: '' + alertIcon,
+                            }).then((result) => {
+                                window.location = '';
+                            });
+                        }
+                        /*]]>*/
+                    </script>
+
+                </div>
+
+
+                <div id="divOculto" style="display: none;">
+
+
+                    <!-- Content here-->
+                    <div class="container-fluid">
+                        <form class="form-neon" action="" style="background-color: tan">
+                            <div class="container-fluid">
+                                <div class="row justify-content-md-center">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="inputSearch" class="bmd-label-floating">¿Qué cliente estas
+                                                buscando?</label>
+                                            <input type="text" class="form-control" name="busqueda-" id="buscar"
+                                                maxlength="30">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="container-fluid">
+                        <form action="">
+                            <input type="hidden" name="eliminar-busqueda" value="eliminar">
+                            <div class="container-fluid">
+                                <div class="row justify-content-md-center">
+                                    <div class="col-12 col-md-6">
+                                        <p class="text-center" style="font-size: 20px;">
+                                            Resultados de la búsqueda <strong>“Buscar”</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                    <div class="container-fluid">
+                        <div class="table-responsive">
+                            <table class="table " id="datatable">
+                                <thead>
+                                    <tr class="text-center roboto-medium">
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Teléfono</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="data">
+
+                                    <tr th:each="cliente : ${clientes}" class="text-center">
+                                        <td th:text="${cliente.id_cliente}"></td>
+                                        <td th:text="${cliente.nombre}"></td>
+                                        <td th:text="${cliente.usuario.email}"></td>
+                                        <td th:text="${cliente.usuario.numeroTelefono}"></td>
+
+
+                                    </tr>
+
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <!--=============================================
+	=            Include JavaScript files           =
+	==============================================-->
+    <!-- jQuery V3.4.1 -->
+    <script th:src="@{/js/jquery-3.4.1.min.js}" src="/static/js/jquery-3.4.1.min.js"></script>
+
+    <!-- popper -->
+    <script th:src="@{/js/popper.min.js}" src="/static/js/popper.min.js"></script>
+
+    <!-- Bootstrap V4.3 -->
+    <script th:src="@{/js/bootstrap.min.js}" src="/static/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/jspdf.min.js}" src="/static/js/jspdf.min.js"></script>
+    <script th:src="@{/js/validaciones_registro_vproducto.js}"
+        src="/static/js/validaciones_registro_vproducto.js"></script>
+
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"
+        src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Bootstrap Material Design V4.0 -->
+    <script th:src="@{/js/bootstrap-material-design.min.js}" src="/static/js/bootstrap-material-design.min.js"></script>
+    <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+
+    <script th:src="@{/js/main.js}" src="/static/js/main.js"></script>
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+
+    <script th:src="@{/js/validacion_eliminar.js}" src="/static/js/validacion_eliminar.js"></script>
+
+    
+
+    
+
+
+
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js}"></script>
+
+    <script>
+        // Write on keyup event of keyword input element
+        $(document).ready(function () {
+            $("#buscar").keyup(function () {
+                _this = this;
+                var registrosEncontrados = false; // Variable para controlar si se encontraron registros
+
+                // Show only matching TR, hide rest of them
+                $.each($("#datatable tbody tr"), function () {
+                    if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                        registrosEncontrados = true; // Se encontró al menos un registro
+                    }
+                });
+
+                if (!registrosEncontrados) {
+                    toastr.error('No se encontraron registros.', '', { timeOut: 2000 });
+                    console.log("hola");
+                }
+            });
+        });
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#cantidad").change(function () {
+                const input2 = document.getElementById('cantidad');
+
+                var productoId = $("#producto").val(); // Obtener el ID del producto seleccionado
+                var cantidad = parseInt($(this).val()); // Obtener la cantidad ingresada y convertirla a entero
+                console.log("ndjfidufheu");
+                console.log(productoId);
+                // Realizar solicitud AJAX para obtener la existencia del producto
+                $.ajax({
+                    url: '/admi/obtenerExistenciaProducto/' + productoId,
+                    method: 'GET',
+
+                    success: function (response) {
+                        var existencia = parseInt(response); // Obtener la existencia del producto del servidor
+                        console.log("Esta es la existencia");
+                        console.log(response);
+                        if (cantidad > existencia) {
+                            toastr.error("La cantidad seleccionada supera la existencia del producto.", "", { timeOut: 2000 });
+                            input2.value = '';
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error al obtener la existencia del producto:", error);
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+
+<section class="full-box nav-lateral">
+    <div class="full-box nav-lateral-bg show-nav-lateral"></div>
+    <div class="full-box nav-lateral-content">
+        <figure class="full-box nav-lateral-avatar">
+            <i class="far fa-times-circle show-nav-lateral"></i>
+            <img th:src="@{/img/em.png}" class="img-fluid" alt="Avatar">
+            <figcaption class="roboto-medium text-center">
+                Encargado de mostrador <br><small class="roboto-condensed-light"></small>
+            </figcaption>
+        </figure>
+        <div class="full-box nav-lateral-bar"></div>
+        <nav class="full-box nav-lateral-menu">
+            <ul>
+                <li>
+                    <a th:href="@{/em/inicio}"><i class="fab fa-dashcube fa-pulse"></i> &nbsp; Inicio</a>
+                </li>
+                
+                <li>
+                    <a href="#" class="nav-btn-submenu"><i class="fas fa-file-invoice-dollar fa-pulse"></i>
+                        &nbsp; Citas <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li>
+                                <a th:href="@{/em/cita/nuevo}"><i class="fas fa-plus fa-fw"></i> &nbsp; Registrar cita</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/em/cita/lista}"><i class="fas fa-search fa-fw"></i> </i> &nbsp; Buscar
+                                    cita</a>
+                            </li>
+                        </ul>
+                </li>
+
+
+                <li>
+                    <a href="#" class="nav-btn-submenu"><i class="fab fa-servicestack fa-pulse"></i> &nbsp;
+                        Ventas <i class="fas fa-chevron-down"></i></a>
+                    <ul>
+                        <li>
+                            <a th:href="@{/em/ventaServicio/nuevo}"><i class="fas fa-plus fa-fw"></i> &nbsp; Venta de servicios</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/em/ventaProducto/nuevo}"><i class="fas fa-plus fa-fw"></i> </i> &nbsp; Venta de productos</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="#" class="nav-btn-submenu"><i class="fa fa-shopping-bag fa-pulse"></i> &nbsp;
+                        Compras <i class="fas fa-chevron-down"></i></a>
+                    <ul>
+                        <li>
+                            <a th:href="@{/em/compra/nuevo}"><i class="fas fa-plus fa-fw"></i> &nbsp; Nueva compra</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/em/compra/lista}"><i class="fas fa-search fa-fw"></i> </i> &nbsp; Buscar
+                                compra</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+</section>

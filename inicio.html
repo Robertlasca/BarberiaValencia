@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <title>Nuevo cliente</title>
+
+  <!-- Normalize V8.0.1 -->
+
+  <link th:href="@{/css/normalize.css}" rel="stylesheet" href="/static/css/normalize.css" />
+
+  <!-- Bootstrap V4.3 -->
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="/static/css/bootstrap.min.css" />
+
+  <!-- Bootstrap Material Design V4.0 -->
+  <link th:href="@{/css/bootstrap-material-design.min.css}" rel="stylesheet"
+    href="/static/css/bootstrap-material-design.min.css" />
+
+  <!-- Font Awesome V5.9.0 -->
+  <link th:href="@{/css/all.css}" rel="stylesheet" href="/static/css/all.css" />
+
+  <!-- Sweet Alerts V8.13.0 CSS file -->
+  <link th:href="@{/css/sweetalert2.min.css}" rel="stylesheet" href="/static/css/sweetalert2.min.css" />
+
+  <!-- Sweet Alert V8.13.0 JS file-->
+  <script th:src="@{/js/sweetalert2.min.js}" src="/static/js/sweetalert2.min.js"></script>
+
+  <!-- jQuery Custom Content Scroller V3.1.5 -->
+  <link th:href="@{/css/jquery.mCustomScrollbar.concat.min.js}" rel="stylesheet" />
+  <link th:href="@{/css/jquery.mCustomScrollbar.css}" rel="stylesheet" />
+  <!-- General Styles -->
+  <link th:href="@{/css/stylese.css}" rel="stylesheet" href="/static/css/stylese.css" />
+
+  <script th:src="@{//cdn.jsdelivr.net/npm/sweetalert2@11}" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Encabezado */
+    header {
+      background-color: tan;
+      color: #fff;
+
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+
+
+
+
+    /* Banner */
+    .banner {
+      width: 100%;
+      /* Ajusta el ancho según sea necesario */
+      height: 400px;
+      /* Ajusta la altura según sea necesario */
+
+      background-size: cover;
+      /* Ajusta el tamaño de la imagen para cubrir todo el div */
+      background-position: center;
+      /* Ajusta la posición de la imagen dentro del div */
+      text-align: center;
+      /* Centra el contenido dentro del div */
+      color: #ffffff;
+      /* Color del texto */
+      font-size: 24px;
+      /* Tamaño de fuente del texto */
+      font-weight: bold;
+      /* Peso de la fuente del texto */
+      padding-top: 30px;
+      /* Espacio superior del contenido dentro del div */
+    }
+
+
+
+
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      color: #333;
+      font-size: 24px;
+    }
+
+    section p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* Servicios */
+    .services {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .service {
+      flex-basis: 30%;
+      text-align: center;
+      background-color: antiquewhite;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .service img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    /* Barberos */
+    .barbers {
+      display: flex;
+      justify-content:center;
+      align-items: flex-start;
+    }
+
+    .barber {
+      flex-basis: 30%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .barber img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    /* Contacto */
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    /* Pie de página */
+    footer {
+      background-color: tan;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <!-- Main container -->
+  <main class="full-box main-container">
+
+
+    <div th:replace="@{nav_lateral_general}"></div>
+    <!-- Page content -->
+    <section class="full-box page-content" style="background-color:tan">
+      <nav class="full-box navbar-info">
+        <a href="#" class="float-left show-nav-lateral">
+          <i class="fas fa-exchange-alt"></i>
+        </a>
+        <<a th:href="@{/admi/login}" class="salir" id="salir">>
+          <i class="fas fa-power-off"></i>
+          </a>
+      </nav>
+      <header>
+        <h1>Barbería Valencia</h1>
+      </header>
+
+
+
+
+      <div class="container-fluid">
+        <section id="inicio">
+
+
+          <div class="banner">
+            <img th:src="@{/img/barber.jpeg}" alt="Banner" style=" width: 100%; 
+                        height: 400px; ">
+          </div>
+
+
+        </section>
+
+        <section id="nosotros">
+          <br><br>
+
+          <div class="row">
+
+            <div class="col-12 col-md-6">
+              <center>
+                <img th:src="@{/img/ico.jpg}" style=" width: 300px; 
+                height: 300px; ">
+              </center>
+              
+            </div>
+            <div class="col-12 col-md-6">
+
+              <h2>Nosotros</h2>
+              <p>En Barbería Valencia, nos apasiona el arte del cabello y la barbería tradicional. Nuestro equipo de
+                expertos barberos está comprometido en brindar servicios de alta calidad y un ambiente acogedor para
+                todos nuestros clientes.</p>
+              <p>Nuestra barbería combina la experiencia de años en el oficio con un enfoque moderno y creativo.
+                Valoramos la atención personalizada y nos esforzamos por comprender los estilos individuales de cada
+                cliente para ofrecer cortes de cabello y afeitados de barba que reflejen su personalidad y realcen su
+                apariencia.</p>
+            </div>
+
+
+
+          </div>
+
+        </section>
+
+        <section id="servicios">
+          <h2>Servicios</h2>
+          <div class="services">
+            <div class="service">
+              <img th:src="@{/img/fade.jpg}" alt="Corte de pelo">
+              <h3>Corte de pelo</h3>
+              <p>Las cosas pueden estar mal, pero tu cabello no.</p>
+            </div>
+            <div class="service">
+              <img th:src="@{/img/afeitado.jpg}" alt="Afeitado de barba">
+              <h3>Afeitado de barba</h3>
+              <p>Hombre desbarbado, hombre sin cuidado.</p>
+            </div>
+            <div class="service">
+              <img th:src="@{/img/capilar.jpeg}" alt="Tratamiento capilar">
+              <h3>Tratamiento capilar</h3>
+              <p>La vida es muy corta. Date gusto.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="barberos">
+          <h2>Barberos</h2>
+          <div class="barbers">
+            <div class="barber">
+              <img th:src="@{/img/administrador.jpg}" alt="Barbero 1">
+              <h3>Ericel Valencia Barber</h3>
+              <p>Barbero Profesional
+              </p>
+            </div>
+            <div class="barber">
+              <img th:src="@{/img/bombas.jpg}"  alt="Barbero 2">
+              <h3>Uriel Valencia Barber</h3>
+              <p>Barbero Profesional
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacto">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <center>
+              <h2>Contacto</h2>
+              <div class="contact">
+                <p>Teléfono: 9516738282  Email: barberia.valencia@gmail.com  Dirección: Calle Principal 123, Ciudad</p>
+                
+              </div>
+            </center>
+            </div>
+
+            <div class="col-12 col-md-12">
+              <center>
+              <iframe
+                th:src="@{https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3814.2051693159706!2d-96.71016158512816!3d17.06261408827398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDAzJzQ1LjQiTiA5NsKwNDInMjguNyJX!5e0!3m2!1ses-419!2smx!4v1685421356909!5m2!1ses-419!2smx}"
+                width="1000" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </center>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+        <footer>
+          <p>Derechos de autor &copy; 2023 Valencia Barber</p>
+        </footer>
+</body>
+
+</div>
+
+</section>
+</main>
+
+
+<!--=============================================
+	=            Include JavaScript files           =
+	==============================================-->
+<!-- jQuery V3.4.1 -->
+<script th:src="@{/js/jquery-3.4.1.min.js}" src="/static/js/jquery-3.4.1.min.js"></script>
+
+<!-- popper -->
+<script th:src="@{/js/popper.min.js}" src="/static/js/popper.min.js"></script>
+
+<!-- Bootstrap V4.3 -->
+<script th:src="@{/js/bootstrap.min.js}" src="/static/js/bootstrap.min.js"></script>
+
+<!-- jQuery Custom Content Scroller V3.1.5 -->
+<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"
+  src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+<!-- Bootstrap Material Design V4.0 -->
+<script th:src="@{/js/bootstrap-material-design.min.js}" src="/static/js/bootstrap-material-design.min.js"></script>
+<script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+
+<script>
+  const carousel = document.querySelector('.carousel');
+  const carouselItems = carousel.querySelectorAll('.carousel-item');
+  let currentIndex = 0;
+
+  function showItem(index) {
+    carouselItems.forEach(item => {
+      item.style.transform = `translateX(-${index * 100}%)`;
+    });
+  }
+
+  function nextItem() {
+    currentIndex = (currentIndex + 1) % carouselItems.length;
+    showItem(currentIndex);
+  }
+
+  setInterval(nextItem, 3000); // Cambia la imagen cada 3 segundos (ajusta el intervalo según tus necesidades)
+</script>
+
+<script th:src="@{/js/main.js}" src="/static/js/main.js"></script>
+</body>
+
+</html>
